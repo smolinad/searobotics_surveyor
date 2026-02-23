@@ -1,9 +1,10 @@
 import atexit
 import re
+import signal
 import subprocess
 import threading
 from pathlib import Path
-import signal
+
 
 class LidarWrapper:
     def __init__(self, serial_port="/dev/ttyUSB0", baudrate="1000000"):
@@ -85,7 +86,6 @@ if __name__ == "__main__":
     ax.set_ylim(0, 4)  # Adjust max range based on your lidar
 
     def update(_):
-
         data = lidar.get_scan_data()
         # print(f"Data received: {data[:10]}...")
         theta = np.deg2rad(np.arange(360))

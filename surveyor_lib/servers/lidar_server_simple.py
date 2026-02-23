@@ -20,6 +20,7 @@ N = None
 SAFE_TRESHOLD = None
 LIDAR = None
 
+
 def initialize_and_start(lidar_port, baudrate, n, lim, op_angle):
     """
     Initialize the Lidar and start data collection in a separate thread.
@@ -127,8 +128,7 @@ def generate_mjpeg_stream():
 
         # Yield the frame as MJPEG data
         yield (
-            b"--frame\r\n"
-            b"Content-Type: image/jpeg\r\n\r\n" + frame + b"\r\n"
+            b"--frame\r\nContent-Type: image/jpeg\r\n\r\n" + frame + b"\r\n"
         )
 
 

@@ -56,5 +56,7 @@ def get_serial_port(keyword: str) -> Optional[str]:
 if __name__ == "__main__":
     for line in get_dmesg_ttyusb_lines():
         print(line)
-    port = get_serial_port("cp210x")  # Example usage, searching for cp210x devices
+    port = get_serial_port(
+        "cp210x"
+    )  # Example usage, searching for cp210x devices
     print(f"Selected port: {port}")  # May be 'None' if not found

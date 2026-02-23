@@ -56,7 +56,11 @@ class Exo2Server(http.server.SimpleHTTPRequestHandler):
             if (
                 not data
                 or data.startswith(b"#")
-                or bool(re.search(r"[a-zA-Z]", data.decode("utf-8", errors="ignore")))
+                or bool(
+                    re.search(
+                        r"[a-zA-Z]", data.decode("utf-8", errors="ignore")
+                    )
+                )
             ):
                 data = self.serial.readline().strip()  # Read the actual data
             return data
@@ -125,12 +129,18 @@ def main():
             server.serve_forever()
     except KeyboardInterrupt:
         print("\nShutting down server.")
-        if Exo2Server.serial_connection and Exo2Server.serial_connection.is_open:
+        if (
+            Exo2Server.serial_connection
+            and Exo2Server.serial_connection.is_open
+        ):
             Exo2Server.serial_connection.close()
         sys.exit(0)
     except Exception as e:
         print(f"Error: {e}")
-        if Exo2Server.serial_connection and Exo2Server.serial_connection.is_open:
+        if (
+            Exo2Server.serial_connection
+            and Exo2Server.serial_connection.is_open
+        ):
             Exo2Server.serial_connection.close()
         sys.exit(1)
 
@@ -185,7 +195,9 @@ if __name__ == "__main__":
         if serial_port:
             args["serial_port"] = serial_port
         else:
-            print("Error: No serial port found. Using the provided serial port.")
+            print(
+                "Error: No serial port found. Using the provided serial port."
+            )
 
     Exo2Server.host = args["host"]
     Exo2Server.port = int(args["port"])

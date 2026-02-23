@@ -8,7 +8,9 @@ import pandas as pd
 
 from .logger import HELPER_LOGGER
 
-DEFAULT_OUT_DIR_PATH = os.path.abspath(os.path.join(__file__, "../../../../out/"))
+DEFAULT_OUT_DIR_PATH = os.path.abspath(
+    os.path.join(__file__, "../../../../out/")
+)
 
 
 def append_to_csv(
@@ -63,7 +65,9 @@ def save(
         dir_path: Directory path where the CSV file will be stored. If None, uses the default directory.
     """
     if data:
-        append_to_csv(data.values(), data.keys(), post_fix=post_fix, dir_path=dir_path)
+        append_to_csv(
+            data.values(), data.keys(), post_fix=post_fix, dir_path=dir_path
+        )
     else:
         HELPER_LOGGER.error("No values to be appended to the CSV")
 
@@ -96,7 +100,9 @@ def process_gga_and_save_data(
         filtered_keys = list(allowed_keys)
 
     if not filtered_keys:
-        raise ValueError("No valid data keys provided. Allowed: 'state', 'exo2'.")
+        raise ValueError(
+            "No valid data keys provided. Allowed: 'state', 'exo2'."
+        )
 
     surveyor_data = surveyor_connection.get_data(filtered_keys)
 

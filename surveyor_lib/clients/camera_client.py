@@ -81,7 +81,6 @@ class CameraClient(BaseClient):
 
 
 if __name__ == "__main__":
-
     # Create an ArgumentParser object
     print(f"Run {sys.argv[0]} -h  for help")
     parser = argparse.ArgumentParser(description="Client script for PiCamera.")

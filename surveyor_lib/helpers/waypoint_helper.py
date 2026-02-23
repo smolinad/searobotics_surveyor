@@ -1,4 +1,4 @@
-from typing import Callable, Iterable, List, Tuple
+from typing import Callable
 
 import pandas as pd
 
@@ -203,11 +203,15 @@ def create_waypoint_messages_df_from_list(waypoints, erp):
 
     # Ensure erp is a single tuple, wrap into list of one row
     if not isinstance(erp, (list, tuple)) or len(erp) != 2:
-        HELPER_LOGGER.error("ERP must be a (latitude, longitude) tuple, got %r", erp)
+        HELPER_LOGGER.error(
+            "ERP must be a (latitude, longitude) tuple, got %r", erp
+        )
         return pd.DataFrame()
 
     try:
-        waypoints_df = pd.DataFrame(waypoints, columns=["latitude", "longitude"])
+        waypoints_df = pd.DataFrame(
+            waypoints, columns=["latitude", "longitude"]
+        )
         erp_df = pd.DataFrame([erp], columns=["latitude", "longitude"])
     except Exception as e:
         HELPER_LOGGER.error("Error creating DataFrames from inputs: %s", e)
@@ -271,7 +275,9 @@ def create_waypoint_mission(df, throttle=20):
     """
     # Start with the PSEAR command
     psear_cmd = "PSEAR,0,000,{},0,000".format(throttle)
-    psear_cmd_with_checksum = f"{psear_cmd}*{compute_nmea_checksum(psear_cmd)}\r\n"
+    psear_cmd_with_checksum = (
+        f"{psear_cmd}*{compute_nmea_checksum(psear_cmd)}\r\n"
+    )
 
     # Generate OIWPL commands from the DataFrame
     oiwpl_cmds = df["nmea_message"].tolist()

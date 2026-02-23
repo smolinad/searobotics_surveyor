@@ -124,8 +124,7 @@ def generate_mjpeg_stream():
 
         # Yield the frame as MJPEG data
         yield (
-            b"--frame\r\n"
-            b"Content-Type: image/jpeg\r\n\r\n" + frame + b"\r\n"
+            b"--frame\r\nContent-Type: image/jpeg\r\n\r\n" + frame + b"\r\n"
         )
 
 

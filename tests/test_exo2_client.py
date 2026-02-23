@@ -16,10 +16,11 @@ def exo2_mock_params():
 
 @pytest.fixture
 def exo2_client_with_mock_params(exo2_mock_params):
-    with patch.object(
-        Exo2Client, "initialize_server_serial_connection"
-    ), patch.object(
-        Exo2Client, "get_exo2_params", return_value=exo2_mock_params
+    with (
+        patch.object(Exo2Client, "initialize_server_serial_connection"),
+        patch.object(
+            Exo2Client, "get_exo2_params", return_value=exo2_mock_params
+        ),
     ):
         return Exo2Client(server_ip="127.0.0.1", server_port="5000")
 

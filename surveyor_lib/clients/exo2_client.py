@@ -142,9 +142,9 @@ class Exo2Client(BaseClient):
         # Split the received string on whitespace and convert values to floats
 
         exo2_data_list = exo2_data_str.split()
-        assert len(exo2_data_list) == len(
-            self.exo2_params
-        ), "For some reason the params and the data size do not match"
+        assert len(exo2_data_list) == len(self.exo2_params), (
+            "For some reason the params and the data size do not match"
+        )
         exo2_data_dict = {
             param_name: float(value)
             for param_name, value in zip(

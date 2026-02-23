@@ -10,7 +10,9 @@ from PIL import Image
 app = Flask(__name__)
 
 
-def get_video_source_fnc(source: str = "picamera", width: int = 640, height: int = 480):
+def get_video_source_fnc(
+    source: str = "picamera", width: int = 640, height: int = 480
+):
     """
     Returns a function to read frames from a video source.
 
@@ -93,7 +95,11 @@ def generate_frames():
         image.save(img_byte_arr, format="JPEG")
         img_bytes = img_byte_arr.getvalue()
 
-        yield (b"--frame\r\nContent-Type: image/jpeg\r\n\r\n" + img_bytes + b"\r\n")
+        yield (
+            b"--frame\r\nContent-Type: image/jpeg\r\n\r\n"
+            + img_bytes
+            + b"\r\n"
+        )
 
 
 @app.route("/")
@@ -122,7 +128,9 @@ def main(host: str, port: int):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Camera Server Script using Flask")
+    parser = argparse.ArgumentParser(
+        description="Camera Server Script using Flask"
+    )
 
     parser.add_argument(
         "--host",

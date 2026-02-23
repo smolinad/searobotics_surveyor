@@ -145,7 +145,9 @@ def process_proprietary_message(
         HELPER_LOGGER.warning("Received empty or None proprietary message.")
         return {}
 
-    HELPER_LOGGER.debug("Receiving proprietary message: %s", proprietary_message)
+    HELPER_LOGGER.debug(
+        "Receiving proprietary message: %s", proprietary_message
+    )
 
     try:
         # Remove header and checksum
@@ -159,7 +161,9 @@ def process_proprietary_message(
     try:
         message_parts = [process_fun(element) for element in message_parts]
     except Exception as e:
-        HELPER_LOGGER.error("Error converting message parts with process_fun: %s", e)
+        HELPER_LOGGER.error(
+            "Error converting message parts with process_fun: %s", e
+        )
         return {}
 
     return dict(zip(value_names, message_parts))
@@ -336,7 +340,9 @@ if __name__ == "__main__":
     # Define file names
     filename = "square_mission"
     erp_filename = "erp_FIUMMC_lake"
-    parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+    parent_dir = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), os.pardir)
+    )
     print(parent_dir)
     # Open CSV files and create NMEA messages
     df = create_waypoint_messages_df(

@@ -13,7 +13,6 @@ from . import helpers as hlp
 
 
 class Surveyor:
-
     VALID_CONTROL_MODES = {
         "Waypoint": ["thrust"],
         "Standby": [],

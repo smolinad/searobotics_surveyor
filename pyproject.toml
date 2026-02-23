@@ -1,11 +1,35 @@
-[tool.black]
+[project]
+name = "searobotics_surveyor"
+version = "0.1.0"
+dependencies = [
+    "geopy==2.4.1",
+    "h5py==3.10.0",
+    "matplotlib==3.8.3",
+    "numpy==1.26.3",
+    "opencv-contrib-python==4.9.0.80",
+    "opencv-python==4.9.0.80",
+    "pandas==2.1.4",
+    "pillow==10.2.0",
+    "pynmea2==1.19.0",
+    "pyserial==3.5",
+    "requests==2.31.0",
+    "cartopy>=0.22.0",
+    "scipy>=1.10.0",
+    "shapely>=2.0.0",
+]
+
+[tool.ruff]
 line-length = 79
-target-version = ['py38']
-skip-string-normalization = false
+target-version = "py39"
 
-[tool.flake8]
-ignore = ["E501", "W503"]
-exclude = ["__init__.py"]
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
 
-[tool.isort]
-profile = "black"
+[tool.ruff.format]
+quote-style = "double"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.0",
+]

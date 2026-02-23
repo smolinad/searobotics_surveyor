@@ -2,3 +2,6 @@
 __pycache__/
 surveyor_test.py
 .py*
+.venv/
+.ruff_cache/
+.DS_Store
